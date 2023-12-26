@@ -15,6 +15,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -104,6 +105,13 @@ public class OrganiserController implements IOrganiserController{
 		headers.add("message", "Organiser " + organiserId + " was found successfully.");
 		ResponseEntity<List<Tournament>> response = new ResponseEntity<>(tourList, headers, HttpStatus.OK);
 		return response;
+	}
+
+//	http://localhost:8088/org/delete-organiser-by-organiserId/1	
+	@DeleteMapping("/delete-organiser-by-organiserId/{oid}")
+	public void deleteByOrganiserId(@PathVariable(name = "oid") int organiserId ) {
+		LOG.info("OrganiserController deleteByOrganiserId" + organiserId);
+		service.deleteOrgByOrgId(organiserId);
 	}
 	
 	@ResponseStatus(HttpStatus.BAD_REQUEST)

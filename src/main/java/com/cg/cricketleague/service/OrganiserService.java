@@ -161,4 +161,30 @@ public class OrganiserService implements IOrganiserService{
 			throw new NotAuthorizedException(exceptionMessage);
 		}
 	}
+	
+	public void deleteOrgByOrgId(int organiserId) {
+		
+		if (appUserService.loggedInUser != null) {
+			if (appUserService.loggedInUser.getRole().equals(Role.ADMIN)) {
+				LOG.info("OrganiserService deleteOrgByOrgId");
+				Organiser org = organiserRepository.getById(organiserId);
+				if (org==null) {
+					LOG.info("Can't find record to delete");
+				}
+				else {
+					organiserRepository.deleteById(organiserId);
+				}
+			}
+			else {
+				String exceptionMessage = "You are not authorised to access this resource!";
+				LOG.warn(exceptionMessage);
+				throw new NotAuthorizedException(exceptionMessage);
+			}
+		}
+		else {
+			String exceptionMessage = "You are not logged in.";
+			LOG.warn(exceptionMessage);
+			throw new NotAuthorizedException(exceptionMessage);
+		}
+	}
 }
