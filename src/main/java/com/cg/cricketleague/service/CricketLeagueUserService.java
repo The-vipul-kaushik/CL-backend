@@ -51,11 +51,12 @@ public class CricketLeagueUserService implements ICricketLeagueUserService {
 
 	@Override
 	public CricketLeagueUser loginUser(CricketLeagueUser CricketLeagueUser) {
-		LOG.info(CricketLeagueUser.toString());
+//		LOG.info(CricketLeagueUser.toString());
 		Optional<CricketLeagueUser> userOptional = cricketLeagueUserRepository.findById(CricketLeagueUser.getUserName());
 		if (userOptional.isPresent()) {
 			if (CricketLeagueUser.equals(userOptional.get())) {
 				LOG.info(userOptional.get().toString());
+				LOG.info("Logged in successfully!!");
 				loggedInUser = CricketLeagueUser; // successful login
 				return CricketLeagueUser;
 			} else {

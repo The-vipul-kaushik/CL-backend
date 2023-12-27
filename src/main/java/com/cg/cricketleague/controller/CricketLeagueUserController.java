@@ -48,7 +48,7 @@ public class CricketLeagueUserController implements ICricketLeagueUserController
 	@Override
 	@PostMapping("/login")
 	public ResponseEntity<CricketLeagueUser> login(@RequestBody CricketLeagueUser appUser) {
-		LOG.info(appUser.toString());
+//		LOG.info(appUser.toString());
 		HttpHeaders headers = new HttpHeaders();
 		headers.add("message", "User " + appUser.getUserName() + " logged in successfully.");
 		return new ResponseEntity<CricketLeagueUser>(appUserService.loginUser(appUser), headers, HttpStatus.OK);
