@@ -47,7 +47,7 @@ private final Logger LOG = LoggerFactory.getLogger(this.getClass());
 	public Tournament getTourById(int tournamentId) {
 		
 		if (appUserService.loggedInUser != null) {
-			if (appUserService.loggedInUser.getRole().equals(Role.ADMIN)) {
+			if (appUserService.loggedInUser.getRole().equals(Role.ADMIN) || appUserService.loggedInUser.getRole().equals(Role.AUDIENCE)) {
 				LOG.info("TournamentService getTourById");
 				Optional<Tournament> tournamentOptional = tournamentRepository.findById(tournamentId);
 				if (tournamentOptional.isPresent()) {
@@ -82,7 +82,7 @@ private final Logger LOG = LoggerFactory.getLogger(this.getClass());
 	public List<Tournament> getAllTours() {
 		
 		if (appUserService.loggedInUser != null) {
-			if (appUserService.loggedInUser.getRole().equals(Role.ADMIN)) {
+			if (appUserService.loggedInUser.getRole().equals(Role.ADMIN) || appUserService.loggedInUser.getRole().equals(Role.AUDIENCE)) {
 				LOG.info("TournamentService getAllTournaments");
 				List<Tournament> tournamentList = tournamentRepository.findAll();
 				if (tournamentList.isEmpty()) {
@@ -110,7 +110,7 @@ private final Logger LOG = LoggerFactory.getLogger(this.getClass());
 	public Tournament insertTour(Tournament tournament) {
 		
 		if (appUserService.loggedInUser != null) {
-			if (appUserService.loggedInUser.getRole().equals(Role.ADMIN)) {
+			if (appUserService.loggedInUser.getRole().equals(Role.ADMIN) || appUserService.loggedInUser.getRole().equals(Role.AUDIENCE)) {
 				LOG.info("TournamentService insertTour");
 				if (tournament.getOrganiser() == null || organiserRepository.findById(tournament.getOrganiser().getOrganiserId()).isPresent()) {
 					return tournamentRepository.save(tournament);
@@ -137,7 +137,7 @@ private final Logger LOG = LoggerFactory.getLogger(this.getClass());
 	public Tournament updateTour(Tournament tournament) {
 		
 		if (appUserService.loggedInUser != null) {
-			if (appUserService.loggedInUser.getRole().equals(Role.ADMIN)) {
+			if (appUserService.loggedInUser.getRole().equals(Role.ADMIN) || appUserService.loggedInUser.getRole().equals(Role.AUDIENCE)) {
 				LOG.info("TournamentService updateTour");
 				Optional<Tournament> tournamentOptional = tournamentRepository.findById(tournament.getTournamentId());
 				if (tournamentOptional.isPresent()) {
@@ -171,7 +171,7 @@ private final Logger LOG = LoggerFactory.getLogger(this.getClass());
 	public List<Match> getAllMats(int tournamentId) {
 		
 		if (appUserService.loggedInUser != null) {
-			if (appUserService.loggedInUser.getRole().equals(Role.ADMIN)) {
+			if (appUserService.loggedInUser.getRole().equals(Role.ADMIN) || appUserService.loggedInUser.getRole().equals(Role.AUDIENCE)) {
 				LOG.info("TournamentService getAllMats");
 				Optional<Tournament> tournamentOptional = tournamentRepository.findById(tournamentId);
 				if (tournamentOptional.isPresent()) {
@@ -200,7 +200,7 @@ private final Logger LOG = LoggerFactory.getLogger(this.getClass());
 	public Match getMatchByTourIdAndMatchId(int tournamentId, int matchId) {
 		
 		if (appUserService.loggedInUser != null) {
-			if (appUserService.loggedInUser.getRole().equals(Role.ADMIN)) {
+			if (appUserService.loggedInUser.getRole().equals(Role.ADMIN) || appUserService.loggedInUser.getRole().equals(Role.AUDIENCE)) {
 				LOG.info("TournamentService getMatchByTourIdAndMatchId");
 				Optional<Tournament> tournamentOptional = tournamentRepository.findById(tournamentId);
 				if (tournamentOptional.isPresent()) {
@@ -237,7 +237,7 @@ private final Logger LOG = LoggerFactory.getLogger(this.getClass());
 	public Tournament getTourByMatchId(int matchId) {
 		
 		if (appUserService.loggedInUser != null) {
-			if (appUserService.loggedInUser.getRole().equals(Role.ADMIN)) {
+			if (appUserService.loggedInUser.getRole().equals(Role.ADMIN) || appUserService.loggedInUser.getRole().equals(Role.AUDIENCE)) {
 				LOG.info("TournamentService getTourByMatch");
 				return matchRepository.getById(matchId).getTournament();
 			}

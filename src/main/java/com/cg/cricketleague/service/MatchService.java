@@ -47,7 +47,7 @@ public class MatchService implements IMatchService {
 	public Match getMat(int matchId) {
 
 		if (appUserService.loggedInUser != null) {
-			if (appUserService.loggedInUser.getRole().equals(Role.ADMIN)) {
+			if (appUserService.loggedInUser.getRole().equals(Role.ADMIN) || appUserService.loggedInUser.getRole().equals(Role.AUDIENCE)) {
 
 				LOG.info("getMatchById " + matchId);
 				Optional<Match> matchOptional = matchRepository.findById(matchId);
@@ -75,7 +75,7 @@ public class MatchService implements IMatchService {
 	public Match getMatchByName(String matchName) {
 
 		if (appUserService.loggedInUser != null) {
-			if (appUserService.loggedInUser.getRole().equals(Role.ADMIN)) {
+			if (appUserService.loggedInUser.getRole().equals(Role.ADMIN) || appUserService.loggedInUser.getRole().equals(Role.AUDIENCE)) {
 
 				LOG.info("getMachByName " + matchName);
 				Match match = matchRepository.findByMatchName(matchName);
@@ -111,7 +111,7 @@ public class MatchService implements IMatchService {
 	public List<Match> findAllMat() {
 
 		if (appUserService.loggedInUser != null) {
-			if (appUserService.loggedInUser.getRole().equals(Role.ADMIN)) {
+			if (appUserService.loggedInUser.getRole().equals(Role.ADMIN) || appUserService.loggedInUser.getRole().equals(Role.AUDIENCE)) {
 
 				LOG.info("Getting all the matches");
 				List<Match> matchList = matchRepository.findAll();
@@ -134,7 +134,7 @@ public class MatchService implements IMatchService {
 	public Match insertMat(Match match) {
 
 		if (appUserService.loggedInUser != null) {
-			if (appUserService.loggedInUser.getRole().equals(Role.ADMIN)) {
+			if (appUserService.loggedInUser.getRole().equals(Role.ADMIN) || appUserService.loggedInUser.getRole().equals(Role.AUDIENCE)) {
 
 				LOG.info(match.toString());
 
@@ -165,7 +165,7 @@ public class MatchService implements IMatchService {
 	public Match updateMat(Match match) {
 
 		if (appUserService.loggedInUser != null) {
-			if (appUserService.loggedInUser.getRole().equals(Role.ADMIN)) {
+			if (appUserService.loggedInUser.getRole().equals(Role.ADMIN) || appUserService.loggedInUser.getRole().equals(Role.AUDIENCE)) {
 
 				LOG.info(match.toString());
 				Optional<Match> matchOptional = matchRepository.findById(match.getMatchId());
@@ -202,7 +202,7 @@ public class MatchService implements IMatchService {
 	public Match deleteMat(int matchId) {
 
 		if (appUserService.loggedInUser != null) {
-			if (appUserService.loggedInUser.getRole().equals(Role.ADMIN)) {
+			if (appUserService.loggedInUser.getRole().equals(Role.ADMIN) || appUserService.loggedInUser.getRole().equals(Role.AUDIENCE)) {
 
 				LOG.info("Match removed");
 				Optional<Match> matchOptional = matchRepository.findById(matchId);
@@ -231,7 +231,7 @@ public class MatchService implements IMatchService {
 	public Tournament getTournamentByMatch(int matchId) {
 
 		if (appUserService.loggedInUser != null) {
-			if (appUserService.loggedInUser.getRole().equals(Role.ADMIN)) {
+			if (appUserService.loggedInUser.getRole().equals(Role.ADMIN) || appUserService.loggedInUser.getRole().equals(Role.AUDIENCE)) {
 
 				LOG.info("getTournament By matchId " + matchId);
 				Optional<Match> matchOptional = matchRepository.findById(matchId);
@@ -260,7 +260,7 @@ public class MatchService implements IMatchService {
 	public List<Audience> getAllAudience() {
 
 		if (appUserService.loggedInUser != null) {
-			if (appUserService.loggedInUser.getRole().equals(Role.ADMIN)) {
+			if (appUserService.loggedInUser.getRole().equals(Role.ADMIN) || appUserService.loggedInUser.getRole().equals(Role.AUDIENCE)) {
 
 				LOG.info("Getting all the audiences");
 				List<Audience> audienceList = audienceRepository.findAll();
@@ -283,7 +283,7 @@ public class MatchService implements IMatchService {
 	public List<Audience> getAudiencesByMatch(int matchId) {
 
 		if (appUserService.loggedInUser != null) {
-			if (appUserService.loggedInUser.getRole().equals(Role.ADMIN)) {
+			if (appUserService.loggedInUser.getRole().equals(Role.ADMIN) || appUserService.loggedInUser.getRole().equals(Role.AUDIENCE)) {
 
 				LOG.info("getAudience By matchId " + matchId);
 				Optional<Match> matchOptional = matchRepository.findById(matchId);

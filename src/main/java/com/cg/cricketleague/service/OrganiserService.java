@@ -36,7 +36,7 @@ public class OrganiserService implements IOrganiserService{
 	public Organiser getOrgById(int organiserId) {
 		
 		if (appUserService.loggedInUser != null) {
-			if (appUserService.loggedInUser.getRole().equals(Role.ADMIN)) {
+			if (appUserService.loggedInUser.getRole().equals(Role.ADMIN) || appUserService.loggedInUser.getRole().equals(Role.AUDIENCE)) {
 				LOG.info("OrganiserService getOrgById");
 				Optional<Organiser> organiserOptional = organiserRepository.findById(organiserId);
 				if (organiserOptional.isPresent()) {
@@ -71,7 +71,7 @@ public class OrganiserService implements IOrganiserService{
 	public List<Organiser> getAllOrgs() {
 		
 		if (appUserService.loggedInUser != null) {
-			if (appUserService.loggedInUser.getRole().equals(Role.ADMIN)) {
+			if (appUserService.loggedInUser.getRole().equals(Role.ADMIN) || appUserService.loggedInUser.getRole().equals(Role.AUDIENCE)) {
 				LOG.info("OrganiserService getAllOrgs");
 				List<Organiser> organiserList = organiserRepository.findAll();
 				if (organiserList.isEmpty()) {
@@ -99,7 +99,7 @@ public class OrganiserService implements IOrganiserService{
 	public Organiser insertOrg(Organiser organiser) {
 		
 		if (appUserService.loggedInUser != null) {
-			if (appUserService.loggedInUser.getRole().equals(Role.ADMIN)) {
+			if (appUserService.loggedInUser.getRole().equals(Role.ADMIN) || appUserService.loggedInUser.getRole().equals(Role.AUDIENCE)) {
 				return organiserRepository.save(organiser);
 			}
 			else {
@@ -118,7 +118,7 @@ public class OrganiserService implements IOrganiserService{
 	@Override
 	public Organiser updateOrg(Organiser organiser) {
 		if (appUserService.loggedInUser != null) {
-			if (appUserService.loggedInUser.getRole().equals(Role.ADMIN)) {
+			if (appUserService.loggedInUser.getRole().equals(Role.ADMIN) || appUserService.loggedInUser.getRole().equals(Role.AUDIENCE)) {
 				return organiserRepository.save(organiser);
 			}
 			else {
@@ -138,7 +138,7 @@ public class OrganiserService implements IOrganiserService{
 	public List<Tournament> getToursByOrgId(int organiserId) {
 		
 		if (appUserService.loggedInUser != null) {
-			if (appUserService.loggedInUser.getRole().equals(Role.ADMIN)) {
+			if (appUserService.loggedInUser.getRole().equals(Role.ADMIN) || appUserService.loggedInUser.getRole().equals(Role.AUDIENCE)) {
 				LOG.info("OrganiserService getToursByOrgId");
 				Optional<Organiser> organiserOptional = organiserRepository.findById(organiserId);
 				if (organiserOptional.isPresent()) {
@@ -165,7 +165,7 @@ public class OrganiserService implements IOrganiserService{
 	public void deleteOrgByOrgId(int organiserId) {
 		
 		if (appUserService.loggedInUser != null) {
-			if (appUserService.loggedInUser.getRole().equals(Role.ADMIN)) {
+			if (appUserService.loggedInUser.getRole().equals(Role.ADMIN) || appUserService.loggedInUser.getRole().equals(Role.AUDIENCE)) {
 				LOG.info("OrganiserService deleteOrgByOrgId");
 				Organiser org = organiserRepository.getById(organiserId);
 				if (org==null) {

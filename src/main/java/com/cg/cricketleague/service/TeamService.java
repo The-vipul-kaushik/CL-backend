@@ -40,7 +40,7 @@ public class TeamService implements ITeamService {
 	public Team getTeam(int teamId) {
 
 		if (appUserService.loggedInUser != null) {
-			if (appUserService.loggedInUser.getRole().equals(Role.ADMIN)) {
+			if (appUserService.loggedInUser.getRole().equals(Role.ADMIN) || appUserService.loggedInUser.getRole().equals(Role.AUDIENCE)) {
 
 				LOG.info("getTeamById " + teamId);
 				Optional<Team> teamOptional = teamRepository.findById(teamId);
@@ -69,7 +69,7 @@ public class TeamService implements ITeamService {
 	public Team getTeamByName(String teamName) {
 
 		if (appUserService.loggedInUser != null) {
-			if (appUserService.loggedInUser.getRole().equals(Role.ADMIN)) {
+			if (appUserService.loggedInUser.getRole().equals(Role.ADMIN) || appUserService.loggedInUser.getRole().equals(Role.AUDIENCE)) {
 
 				LOG.info("getTeamByName " + teamName);
 				Team team = teamRepository.findByTeamName(teamName);
@@ -97,7 +97,7 @@ public class TeamService implements ITeamService {
 	@Override
 	public List<Team> getAllTeams() {
 		if (appUserService.loggedInUser != null) {
-			if (appUserService.loggedInUser.getRole().equals(Role.ADMIN)) {
+			if (appUserService.loggedInUser.getRole().equals(Role.ADMIN) || appUserService.loggedInUser.getRole().equals(Role.AUDIENCE)) {
 				
 				LOG.info("Getting all the teams");
 				List<Team> teamList = teamRepository.findAll();
@@ -119,7 +119,7 @@ public class TeamService implements ITeamService {
 	public Team insertTeam(Team team) {
 
 		if (appUserService.loggedInUser != null) {
-			if (appUserService.loggedInUser.getRole().equals(Role.ADMIN)) {
+			if (appUserService.loggedInUser.getRole().equals(Role.ADMIN) || appUserService.loggedInUser.getRole().equals(Role.AUDIENCE)) {
 				
 				LOG.info(team.toString());
 
@@ -148,7 +148,7 @@ public class TeamService implements ITeamService {
 	public Team updateTeam(Team team) {
 
 		if (appUserService.loggedInUser != null) {
-			if (appUserService.loggedInUser.getRole().equals(Role.ADMIN)) {
+			if (appUserService.loggedInUser.getRole().equals(Role.ADMIN) || appUserService.loggedInUser.getRole().equals(Role.AUDIENCE)) {
 				
 				LOG.info(team.toString());
 				Optional<Team> teamOptional = teamRepository.findById(team.getTeamId());
@@ -184,7 +184,7 @@ public class TeamService implements ITeamService {
 	public Team deleteTeam(int teamId) {
 
 		if (appUserService.loggedInUser != null) {
-			if (appUserService.loggedInUser.getRole().equals(Role.ADMIN)) {
+			if (appUserService.loggedInUser.getRole().equals(Role.ADMIN) || appUserService.loggedInUser.getRole().equals(Role.AUDIENCE)) {
 				
 				LOG.info(Integer.toString(teamId));
 				Optional<Team> teamOptional = teamRepository.findById(teamId);
@@ -213,7 +213,7 @@ public class TeamService implements ITeamService {
 	public List<Player> getAllPlayers() {
 
 		if (appUserService.loggedInUser != null) {
-			if (appUserService.loggedInUser.getRole().equals(Role.ADMIN)) {
+			if (appUserService.loggedInUser.getRole().equals(Role.ADMIN) || appUserService.loggedInUser.getRole().equals(Role.AUDIENCE)) {
 				
 				LOG.info("Getting all the players");
 				List<Player> playerList = playerRepository.findAll();
@@ -236,7 +236,7 @@ public class TeamService implements ITeamService {
 	public List<Player> getPlayersByTeam(int teamId) {
 
 		if (appUserService.loggedInUser != null) {
-			if (appUserService.loggedInUser.getRole().equals(Role.ADMIN)) {
+			if (appUserService.loggedInUser.getRole().equals(Role.ADMIN) || appUserService.loggedInUser.getRole().equals(Role.AUDIENCE)) {
 				
 				LOG.info("getPlayerByTeamId " + teamId);
 				Optional<Team> teamOptional = teamRepository.findById(teamId);
