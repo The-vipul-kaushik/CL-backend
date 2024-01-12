@@ -33,7 +33,7 @@ import com.cg.cricketleague.service.OrganiserService;
 
 @RestController
 @RequestMapping("/org")
-@CrossOrigin(origins = "http://localhost:3000/")
+@CrossOrigin(origins = "http://localhost:3000/")     //request from this origin will be allowed only
 public class OrganiserController implements IOrganiserController{
 
 	private final Logger LOG = LoggerFactory.getLogger(this.getClass());
